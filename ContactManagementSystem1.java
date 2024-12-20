@@ -17,19 +17,14 @@ class ContactManagerGUI {
     private final DefaultTableModel tableModel;
 
     public ContactManagerGUI() {
-        // Set up the main frame
         frame = new JFrame("Contact Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 400);
         frame.setLayout(new BorderLayout());
-
-        // Create a table to display contacts
         String[] columnNames = {"Name", "Phone", "Email"};
         tableModel = new DefaultTableModel(columnNames, 0);
         JTable contactTable = new JTable(tableModel);
         JScrollPane tableScrollPane = new JScrollPane(contactTable);
-
-        // Create a form panel for adding contacts
         JPanel formPanel = new JPanel(new GridLayout(4, 2, 10, 10));
         JTextField nameField = new JTextField();
         JTextField phoneField = new JTextField();
@@ -43,13 +38,12 @@ class ContactManagerGUI {
         formPanel.add(phoneField);
         formPanel.add(new JLabel("Email:"));
         formPanel.add(emailField);
-        formPanel.add(new JLabel()); // Placeholder
+        formPanel.add(new JLabel()); 
         formPanel.add(addButton);
 
-        // Create a delete button
+
         JButton deleteButton = new JButton("Delete Selected Contact");
 
-        // Add functionality to the "Add Contact" button
         addButton.addActionListener(e -> {
             String name = nameField.getText().trim();
             String phone = phoneField.getText().trim();
@@ -66,7 +60,7 @@ class ContactManagerGUI {
             emailField.setText("");
         });
 
-        // Add functionality to the "Delete Selected Contact" button
+
         deleteButton.addActionListener(e -> {
             int selectedRow = contactTable.getSelectedRow();
             if (selectedRow == -1) {
@@ -76,12 +70,12 @@ class ContactManagerGUI {
             }
         });
 
-        // Add components to the frame
+    
         frame.add(formPanel, BorderLayout.NORTH);
         frame.add(tableScrollPane, BorderLayout.CENTER);
         frame.add(deleteButton, BorderLayout.SOUTH);
 
-        // Make the frame visible
+
         frame.setVisible(true);
     }
 }
